@@ -10,8 +10,6 @@
 package scala
 package util.parsing.input
 
-import scala.collection.immutable.PagedSeq
-
 /** An object encapsulating basic character constants.
  *
  * @author Martin Odersky
@@ -33,7 +31,7 @@ class PagedSeqReader(seq: PagedSeq[Char],
                      override val offset: Int) extends Reader[Char] {
   import PagedSeqReader._
 
-  override lazy val source: java.lang.CharSequence = seq
+  override lazy val source: java.lang.CharSequence = new SeqCharSequence(seq)
 
   /** Construct a `PagedSeqReader` with its first element at
    *  `source(0)` and position `(1,1)`.
